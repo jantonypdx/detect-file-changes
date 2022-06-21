@@ -50,14 +50,14 @@ const git = simpleGit();
         typeof process.env.DETECT_FILE_CHANGES_REPO !== 'undefined' &&
         typeof process.env.GITHUB_USEREMAIL !== 'undefined'
       ) {
-        // const remote =
-        //   `https://${process.env.GITHUB_USERNAME}:${process.env.GITHUB_PASSWORD}` +
-        //   `@${process.env.DETECT_FILE_CHANGES_REPO}`;
+        const remote =
+          `https://${process.env.GITHUB_USERNAME}:${process.env.GITHUB_PASSWORD}` +
+          `@${process.env.DETECT_FILE_CHANGES_REPO}`;
         const commitMessage = await git
-          // .addConfig('user.name', process.env.GITHUB_USERNAME)
-          // .addConfig('user.email', process.env.GITHUB_USEREMAIL)
-          // .removeRemote('origin')
-          // .addRemote('origin', remote)
+          .addConfig('user.name', process.env.GITHUB_USERNAME)
+          .addConfig('user.email', process.env.GITHUB_USEREMAIL)
+          .removeRemote('origin')
+          .addRemote('origin', remote)
           .add('./*')
           .commit(message);
         await git.push(['-u', 'origin', 'master']);
