@@ -27,8 +27,8 @@ const git = simpleGit();
 
   try {
     // retrieve the page contents & write to file
-    const { body: fileData } = await got(fileUrl, options);
-    fs.writeFileSync(fileAbsolutePath, fileData);
+    const { body } = await got(fileUrl, options);
+    fs.writeFileSync(fileAbsolutePath, body);
     console.log(`- ${fileUrl} -> ${filePath}/${fileName}`);
 
     // look for git changes related to the file
