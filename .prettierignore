@@ -1,0 +1,4 @@
+# ignore everything except Javascript files (*.js):
+/*
+!/tests/
+!/tests/**/*.{js,mjs}

@@ -1,0 +1,24 @@
+{
+  "name": "detect-file-changes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "update-files": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "John Antony",
+  "license": "MIT",
+  "dependencies": {
+    "got": "^12.1.0",
+    "simple-git": "^3.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.18.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.7.1"
+  }
+}
