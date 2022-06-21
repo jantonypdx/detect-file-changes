@@ -42,6 +42,28 @@ const git = simpleGit();
     if (modifiedFiles > 0) {
       const message = `\n${modifiedFiles} modified '${fileName}' file`;
       console.log(message);
+
+      // try to commit the changes & push them to the repository
+      if (
+        typeof process.env.GITHUB_USERNAME !== 'undefined' &&
+        typeof process.env.GITHUB_PASSWORD !== 'undefined' &&
+        typeof process.env.DETECT_FILE_CHANGES_REPO !== 'undefined' &&
+        typeof process.env.GITHUB_USEREMAIL !== 'undefined'
+      ) {
+        const remote =
+          `https://${process.env.GITHUB_USERNAME}:${process.env.GITHUB_PASSWORD}` +
+          `@${process.env.DETECT_FILE_CHANGES_REPO}`;
+        const commitMessage = await git
+          .addConfig('user.name', process.env.GITHUB_USERNAME)
+          .addConfig('user.email', process.env.GITHUB_USEREMAIL)
+          .removeRemote('origin')
+          .addRemote('origin', remote)
+          .add('./*')
+          .commit(message);
+        await git.push(['-u', 'origin', 'master']);
+
+        console.log('commitMessage:', commitMessage);
+      }
     } else {
       console.log(`\nNo '${fileName}' changes found.`);
     }

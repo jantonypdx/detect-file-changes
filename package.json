@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "update-files": "echo \"Error: no test specified\" && exit 1"
+    "update-files": "node tests/getRobotsFile.mjs"
   },
   "keywords": [],
   "author": "John Antony",

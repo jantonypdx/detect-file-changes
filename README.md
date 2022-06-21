@@ -12,7 +12,7 @@ whenever the file contents change.
 - run `npm installl`
 
 ## Usage
-Run the following command to ESLint test all javascript files in the repository:
+Run the following command to update the files in the repository:
 ```
 npm run update-files
 ```
