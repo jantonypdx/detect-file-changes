@@ -53,6 +53,8 @@ const git = simpleGit();
         const remote =
           `https://${process.env.GITHUB_USERNAME}:${process.env.GITHUB_PASSWORD}` +
           `@${process.env.DETECT_FILE_CHANGES_REPO}`;
+        const branch = 'main';
+
         const commitMessage = await git
           .addConfig('user.name', process.env.GITHUB_USERNAME)
           .addConfig('user.email', process.env.GITHUB_USEREMAIL)
@@ -60,7 +62,7 @@ const git = simpleGit();
           .addRemote('origin', remote)
           .add('./*')
           .commit(message);
-        await git.push(['-u', 'origin', 'master']);
+        await git.push(['-u', 'origin', branch]);
 
         console.log('commitMessage:', commitMessage);
       }
