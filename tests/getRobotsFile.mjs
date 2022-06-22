@@ -46,18 +46,18 @@ const git = simpleGit();
       // try to commit the changes & push them to the repository
       if (
         typeof process.env.GITHUB_USERNAME !== 'undefined' &&
-        typeof process.env.GITHUB_PASSWORD !== 'undefined' &&
+        typeof process.env.GITHUB_PERSONAL_ACCESS_TOKEN !== 'undefined' &&
         typeof process.env.DETECT_FILE_CHANGES_REPO !== 'undefined' &&
         typeof process.env.GITHUB_USEREMAIL !== 'undefined'
       ) {
         const remote =
-          `https://${process.env.GITHUB_USERNAME}:${process.env.GITHUB_PASSWORD}` +
+          `https://${process.env.GITHUB_USERNAME}:${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}` +
           `@${process.env.DETECT_FILE_CHANGES_REPO}`;
         const branch = 'main';
 
         const commitMessage = await git
-          .addConfig('user.name', process.env.GITHUB_USERNAME)
-          .addConfig('user.email', process.env.GITHUB_USEREMAIL)
+          // .addConfig('user.name', process.env.GITHUB_USERNAME)
+          // .addConfig('user.email', process.env.GITHUB_USEREMAIL)
           .removeRemote('origin')
           .addRemote('origin', remote)
           .add('./*')
