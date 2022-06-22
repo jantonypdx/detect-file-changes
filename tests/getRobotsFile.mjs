@@ -23,15 +23,15 @@ const git = simpleGit();
   const fileAbsolutePath = path.resolve(`${filePath}/${fileName}`);
   const options = {};
 
-  console.log(`Getting robots file:`);
+  console.log(`Getting '${fileName}' file:`);
 
   try {
-    // retrieve the page contents & write to file
+    // retrieve the fileUrl page contents & write to file
     const { body } = await got(fileUrl, options);
     fs.writeFileSync(fileAbsolutePath, body);
     console.log(`- ${fileUrl} -> ${filePath}/${fileName}`);
 
-    // look for git changes related to the file
+    // look for git changes only related to the file
     const status = await git.status();
     const modifiedFiles = status.modified.filter((elem) =>
       elem.includes(fileName)
@@ -47,24 +47,25 @@ const git = simpleGit();
       if (
         typeof process.env.GITHUB_USERNAME !== 'undefined' &&
         typeof process.env.GITHUB_PERSONAL_ACCESS_TOKEN !== 'undefined' &&
-        typeof process.env.DETECT_FILE_CHANGES_REPO !== 'undefined' &&
-        typeof process.env.GITHUB_USEREMAIL !== 'undefined'
+        typeof process.env.DETECT_FILE_CHANGES_REPO !== 'undefined'
       ) {
+        // login to the repo using your Github username and a
+        // personal access token (defined in your Github account's
+        // Settings / Developer settings / Personal access tokens)
         const remote =
           `https://${process.env.GITHUB_USERNAME}:${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}` +
           `@${process.env.DETECT_FILE_CHANGES_REPO}`;
         const branch = 'main';
 
+        // git add, commit, and push changes
         const commitMessage = await git
-          // .addConfig('user.name', process.env.GITHUB_USERNAME)
-          // .addConfig('user.email', process.env.GITHUB_USEREMAIL)
           .removeRemote('origin')
           .addRemote('origin', remote)
           .add('./*')
           .commit(message);
         await git.push(['-u', 'origin', branch]);
 
-        console.log('commitMessage:', commitMessage);
+        // console.log('commitMessage:', commitMessage);
       }
     } else {
       console.log(`\nNo '${fileName}' changes found.`);
