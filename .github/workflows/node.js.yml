@@ -1,0 +1,28 @@
+# This workflow will run the 'npm update-files' script every Monday-Friday at 14:00 UTC.
+
+name: Node.js CI
+
+on:
+  schedule:
+    # cron times are UTC times. For Pacific timezone:
+    # Mar-Nov: UTC = PDT time + 7
+    # Nov-Mar: UTC = PST time + 8
+    - cron: '0 14 * * 1-5'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm run update-files
