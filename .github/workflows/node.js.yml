@@ -1,4 +1,7 @@
 # This workflow will run the 'npm update-files' script every Monday-Friday at 14:00 UTC.
+# Be sure to define these environment variables in your Actions secrets section:
+# - GH_USERNAME - your Github username
+# - GH_PERSONAL_ACCESS_TOKEN - your Github personal access token (see repo README)
 
 name: Node.js CI
 
@@ -9,6 +12,11 @@ on:
     # Nov-Mar: UTC = PST time + 8
     - cron: '0 14 * * 1-5'
 
+env:
+  GH_USERNAME: ${GITHUB_REPOSITORY_OWNER}
+  GH_PERSONAL_ACCESS_TOKEN: ${{secrets.GH_PERSONAL_ACCESS_TOKEN}}
+  DETECT_FILE_CHANGES_REPO_URL: github.com/${GITHUB_REPOSITORY_OWNER}/detect-file-changes
+  
 jobs:
   build:
     runs-on: ubuntu-latest

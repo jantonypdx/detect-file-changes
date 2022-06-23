@@ -45,16 +45,16 @@ const git = simpleGit();
 
       // try to commit the changes & push them to the repository
       if (
-        typeof process.env.GITHUB_USERNAME !== 'undefined' &&
-        typeof process.env.GITHUB_PERSONAL_ACCESS_TOKEN !== 'undefined' &&
-        typeof process.env.DETECT_FILE_CHANGES_REPO !== 'undefined'
+        typeof process.env.GH_USERNAME !== 'undefined' &&
+        typeof process.env.GH_PERSONAL_ACCESS_TOKEN !== 'undefined' &&
+        typeof process.env.DETECT_FILE_CHANGES_REPO_URL !== 'undefined'
       ) {
         // login to the repo using your Github username and a
         // personal access token (defined in your Github account's
         // Settings / Developer settings / Personal access tokens)
         const remote =
-          `https://${process.env.GITHUB_USERNAME}:${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}` +
-          `@${process.env.DETECT_FILE_CHANGES_REPO}`;
+          `https://${process.env.GH_USERNAME}:${process.env.GH_PERSONAL_ACCESS_TOKEN}` +
+          `@${process.env.DETECT_FILE_CHANGES_REPO_URL}`;
         const branch = 'main';
 
         // git add, commit, and push changes
