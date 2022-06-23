@@ -1,10 +1,14 @@
 # detect-file-changes
 
 This is a repository demonstrating how file changes can be 
-automatically detected & tracked. The repository can then easily 
-show the previous file contents as well as the new updated 
-data. Additionally, git notifications can be used to alert users
-whenever the file contents change.
+automatically detected, saved, & pushed to a repository. 
+The commits section in the repository can then easily show the 
+previous file contents as well as the new, updated data. 
+
+Additionally, git notifications can be used to alert users 
+whenever the file contents change. This can be handy for
+team members (e.g. SEO) who want to be alerted whenever 
+pages change.
 
 ## Installation
 
@@ -35,9 +39,9 @@ Actions script:
 - DETECT_FILE_CHANGES_REPO_URL: github.com/${GITHUB_REPOSITORY_OWNER}/detect-file-changes
 
 **Note**: If these three environment variables are found, then 
-after the script runs, if code changes are found, then the changes 
+after the script runs, if code changes are detected, the changes 
 will then be committed & pushed back into the repository. This is
-the "self-updating" feature of the code.
+the "self-updating" feature of this code.
 
 ## Usage
 Run the following command to update the files in the repository:
