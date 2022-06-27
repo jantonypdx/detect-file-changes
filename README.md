@@ -28,9 +28,10 @@ This variable can then be used in the Github Action script.
 
 To do this, go to the repository's "Settings" section, click on 
 "Secrets" and then "Actions". In the "Actions secrets" section, 
-define this "New repository secret".
+define these "New repository secrets".
 
 - GH_PERSONAL_ACCESS_TOKEN - the token value defined above.
+- GH_USEREMAIL - your github email address
 
 Note: these environment variables are also defined in the Github 
 Actions script:

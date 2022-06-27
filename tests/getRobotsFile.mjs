@@ -60,8 +60,8 @@ const git = simpleGit();
 
         // git add, commit, and push changes
         const commitMessage = await git
-          .addConfig('user.name', process.env.GH_USEREMAIL)
-          .addConfig('user.email', process.env.GH_USERNAME)
+          .addConfig('user.name', process.env.GH_USERNAME)
+          .addConfig('user.email', process.env.GH_USEREMAIL)
           .removeRemote('origin')
           .addRemote('origin', remote)
           .add('./*')
