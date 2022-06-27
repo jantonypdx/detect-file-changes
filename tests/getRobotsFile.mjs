@@ -46,6 +46,7 @@ const git = simpleGit();
       // try to commit the changes & push them to the repository
       if (
         typeof process.env.GH_USERNAME !== 'undefined' &&
+        typeof process.env.GH_USEREMAIL !== 'undefined' &&
         typeof process.env.GH_PERSONAL_ACCESS_TOKEN !== 'undefined' &&
         typeof process.env.DETECT_FILE_CHANGES_REPO_URL !== 'undefined'
       ) {
@@ -59,6 +60,8 @@ const git = simpleGit();
 
         // git add, commit, and push changes
         const commitMessage = await git
+          .addConfig('user.name', process.env.GH_USEREMAIL)
+          .addConfig('user.email', process.env.GH_USERNAME)
           .removeRemote('origin')
           .addRemote('origin', remote)
           .add('./*')
