@@ -65,11 +65,9 @@ const git = simpleGit();
           .removeRemote('origin')
           .addRemote('origin', remote)
           .add('./*')
-          .commit(message);
-        const pushMessage = await git.push(['-u', 'origin', branch]);
-
+          .commit(message)
+          .push(['-u', 'origin', branch]);
         console.log('commitMessage:', commitMessage);
-        console.log('pushMessage:', pushMessage);
       }
     } else {
       console.log(`\nNo '${fileName}' changes found.`);
