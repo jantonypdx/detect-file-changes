@@ -1,6 +1,7 @@
-# This workflow will run the 'npm update-files' script every Monday-Friday at 14:00 UTC.
-# Be sure to define these environment variables in your Actions secrets section:
-# - GH_USERNAME - your Github username
+# This workflow will run the 'npm update-files' script every Monday at 14:00 UTC.
+# Be sure to define these environment variables in your repository's 
+# Settings / Secrets / Actions section:
+# - GH_USEREMAIL - your email account used for Github
 # - GH_PERSONAL_ACCESS_TOKEN - your Github personal access token (see repo README)
 
 name: Node.js CI
@@ -10,10 +11,9 @@ on:
     # cron times are UTC times. For Pacific timezone:
     # Mar-Nov: UTC = PDT time + 7
     # Nov-Mar: UTC = PST time + 8
-    - cron: '0 14,22 * * *'
+    - cron: '0 14 * * 1'
 
 env:
-  GITHUB_CONTEXT: ${{toJson(github)}}
   GH_USERNAME: ${{github.repository_owner}}
   GH_USEREMAIL: ${{secrets.GH_USEREMAIL}}
   GH_PERSONAL_ACCESS_TOKEN: ${{secrets.GH_PERSONAL_ACCESS_TOKEN}}
@@ -29,9 +29,6 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - name: Dump github context
-      run: echo "$GITHUB_CONTEXT"
-      shell: bash
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
