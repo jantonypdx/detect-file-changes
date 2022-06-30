@@ -10,13 +10,13 @@ on:
     # cron times are UTC times. For Pacific timezone:
     # Mar-Nov: UTC = PDT time + 7
     # Nov-Mar: UTC = PST time + 8
-    - cron: '0 14,17 * * *'
+    - cron: '0 14,19 * * *'
 
 env:
-  GH_USERNAME: $GITHUB_REPOSITORY_OWNER
-  GH_USEREMAIL: ${{secrets.GH_USEREMAIL}}
-  GH_PERSONAL_ACCESS_TOKEN: ${{secrets.GH_PERSONAL_ACCESS_TOKEN}}
-  DETECT_FILE_CHANGES_REPO_URL: github.com/$GITHUB_REPOSITORY_OWNER/detect-file-changes
+  GH_USERNAME: "$GITHUB_REPOSITORY_OWNER"
+  GH_USEREMAIL: "${{secrets.GH_USEREMAIL}}"
+  GH_PERSONAL_ACCESS_TOKEN: "${{secrets.GH_PERSONAL_ACCESS_TOKEN}}"
+  DETECT_FILE_CHANGES_REPO_URL: "github.com/$GITHUB_REPOSITORY_OWNER/detect-file-changes"
   
 jobs:
   build:
