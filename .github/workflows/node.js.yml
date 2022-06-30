@@ -10,13 +10,14 @@ on:
     # cron times are UTC times. For Pacific timezone:
     # Mar-Nov: UTC = PDT time + 7
     # Nov-Mar: UTC = PST time + 8
-    - cron: '0 14,21 * * *'
+    - cron: '0 14,22 * * *'
 
 env:
-  GH_USERNAME: ${{env.GITHUB_REPOSITORY_OWNER}}
+  GITHUB_CONTEXT: ${{toJson(github)}}
+  GH_USERNAME: ${{github.repository_owner}}
   GH_USEREMAIL: ${{secrets.GH_USEREMAIL}}
   GH_PERSONAL_ACCESS_TOKEN: ${{secrets.GH_PERSONAL_ACCESS_TOKEN}}
-  DETECT_FILE_CHANGES_REPO_URL: github.com/${{env.GITHUB_REPOSITORY_OWNER}}/detect-file-changes
+  DETECT_FILE_CHANGES_REPO_URL: github.com/${{github.repository}}
   
 jobs:
   build:
@@ -28,6 +29,9 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+    - name: Dump github context
+      run: echo "$GITHUB_CONTEXT"
+      shell: bash
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
