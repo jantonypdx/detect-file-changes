@@ -11,7 +11,7 @@ on:
     # cron times are UTC times. For Pacific timezone:
     # Mar-Nov: UTC = PDT time + 7
     # Nov-Mar: UTC = PST time + 8
-    - cron: '30 18 * * *'
+    - cron: '0 19 * * *'
 
 env:
   GH_USERNAME: ${{github.repository_owner}}
