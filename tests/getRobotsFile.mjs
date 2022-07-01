@@ -67,7 +67,9 @@ const git = simpleGit();
           .add('./*')
           .commit(message)
           .push(['-u', 'origin', branch]);
-        console.log('commitMessage:', commitMessage);
+
+        // uncomment if you want to see the file commit details
+        // console.log('commitMessage:', commitMessage);
       }
     } else {
       console.log(`\nNo '${fileName}' changes found.`);
