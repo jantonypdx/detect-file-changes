@@ -40,7 +40,7 @@ const git = simpleGit();
     // if file changes were detected, then add, commit, and push
     // the changes to the remote repository
     if (modifiedFiles > 0) {
-      const message = `\n${modifiedFiles} modified '${fileName}' file`;
+      const message = `\n${modifiedFiles} modified '${fileName}' file found.`;
       console.log(message);
 
       // try to commit the changes & push them to the repository
